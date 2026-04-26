@@ -1,0 +1,28 @@
+# CODEOWNERS for DryadAI/dryad-docs
+# See REPO_CONVENTIONS.md authority levels.
+
+# Provost approval required
+/core/PILLARS.md         @nmodlin
+/core/SOUL.md            @nmodlin
+/core/DESIGN_RULES.md    @nmodlin
+
+# Provost or Lead Dev
+/core/                   @nmodlin @crissmcdonald
+
+# Roots are frozen — only Provost can authorize new versions
+/roots/                  @nmodlin
+
+# Schools — owner of that school
+/schools/memory/         @crissmcdonald @nmodlin
+/schools/governance/     @nmodlin
+/schools/execution/      @crissmcdonald @nmodlin
+
+# Sub-projects — Lead Dev plus owner
+/subprojects/            @crissmcdonald
+
+# Meta — Lead Dev
+/meta/                   @crissmcdonald
+/schemas/                @crissmcdonald
+
+# Default: any change requires review
+*                        @nmodlin @crissmcdonald
