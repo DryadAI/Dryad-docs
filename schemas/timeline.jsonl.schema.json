@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/DryadAI/dryad-docs/schemas/timeline.jsonl.schema.json",
+  "title": "Dryad Sub-Project Timeline Event",
+  "description": "One event in a sub-project's audit/timeline.jsonl forensic log",
+  "type": "object",
+  "required": ["timestamp", "event_id", "actor", "action", "target", "outcome"],
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "RFC 3339 UTC timestamp"
+    },
+    "event_id": {
+      "type": "string",
+      "pattern": "^evt_[a-zA-Z0-9]+$"
+    },
+    "actor": {
+      "type": "string",
+      "description": "Name or service identifier"
+    },
+    "actor_role": {
+      "type": "string",
+      "enum": ["human", "agent", "system"]
+    },
+    "action": {
+      "type": "string",
+      "description": "Verb in snake_case (e.g., file_created, decision_made)"
+    },
+    "target": {
+      "type": "string",
+      "description": "File path, service id, or concept"
+    },
+    "school": {
+      "type": "string",
+      "enum": ["Memory", "Governance", "Execution", "Cross-cutting"]
+    },
+    "pillar": {
+      "type": "string",
+      "enum": ["Infrastructure", "Communication", "Philosophy", "Multiple"]
+    },
+    "details": {
+      "type": "object"
+    },
+    "outcome": {
+      "type": "string",
+      "enum": ["success", "failure", "partial"]
+    },
+    "audit_ref": {
+      "type": "string",
+      "description": "Optional reference to Redis audit stream entry"
+    }
+  },
+  "additionalProperties": false
+}
