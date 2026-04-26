@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/DryadAI/dryad-docs/schemas/audit-entry.schema.json",
+  "title": "Dryad Audit Stream Entry",
+  "description": "One entry in audit:memory | audit:governance | audit:execution Redis stream",
+  "type": "object",
+  "required": ["timestamp", "school", "actor", "action", "outcome"],
+  "properties": {
+    "timestamp": {"type": "string", "format": "date-time"},
+    "school": {"type": "string", "enum": ["Memory", "Governance", "Execution"]},
+    "actor": {"type": "string"},
+    "action": {"type": "string"},
+    "target": {"type": "string"},
+    "details": {"type": "object"},
+    "outcome": {"type": "string", "enum": ["success", "failure", "partial"]},
+    "change_id": {"type": "string", "description": "For state changes; supports rollback"}
+  }
+}

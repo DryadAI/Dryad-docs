@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/DryadAI/dryad-docs/schemas/trace.schema.json",
+  "title": "Dryad Structured Trace v1",
+  "description": "Per-episode trace as defined in core/TRACE_FORMAT.md. This schema is a placeholder; see TRACE_FORMAT.md for canonical structure.",
+  "type": "object",
+  "required": ["trace_id", "timestamp", "school", "agent"],
+  "properties": {
+    "trace_id": {"type": "string"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "school": {"type": "string", "enum": ["Memory", "Governance", "Execution"]},
+    "agent": {"type": "string"},
+    "task": {"type": "string"},
+    "steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "thought": {"type": "string"},
+          "action": {"type": "string"},
+          "observation": {"type": "string"}
+        }
+      }
+    },
+    "outcome": {"type": "string"},
+    "reflections": {"type": "array"}
+  }
+}
