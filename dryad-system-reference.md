@@ -34,6 +34,38 @@ This document describes the architecture and configuration of the Dryad system, 
 ### Tutorial and Learning
 - **Dryad Tutorials** (port 8888) - Interactive learning environment
 
+## Cluster Infrastructure (Phase 7)
+
+### Network
+
+| Node | IP | Role | Status |
+|------|----|------|--------|
+| madhatter | 10.10.10.1 | Compute host / cluster gateway | Active |
+| dryad-sw1 | 10.10.10.2 | FortiSwitch-148F-FPOE (VLAN 10) | Active |
+| dryad-forge | 10.10.10.20 | PXE bootstrap server (dnsmasq + matchbox) | Pending install |
+| dryad-gate | 10.10.10.21 | Public edge — Caddy + cloudflared | Active |
+
+- Cluster VLAN: **10** (`10.10.10.0/24`)
+- Madhatter cluster NIC: **enp2s0f1** (MAC `a0:46:9f:a6:af:95`) — NOT enp2s0f0
+- networkd config: `/etc/systemd/network/10-cluster.network` → `Name=enp2s0f1`
+- FortiSwitch password: `dryad2026` | console: USB serial at 115200 baud
+
+### dryad-gate
+
+- **IP:** `10.10.10.21/24` on `eno1` (static via systemd-networkd)
+- **Services:** `caddy.service`, `cloudflared.service`, `dryad-deploy.timer`
+- **Function:** TLS termination + Cloudflare Zero Trust tunnel for `dryadai.net`
+- **Switch port:** FortiSwitch port4, VLAN 10 native
+- **Repo:** `~/GitHub/dryad-gate/`
+
+### dryad-forge (planned)
+
+- **IP:** `10.10.10.20/24` on `eno1` (static)
+- **Services:** `dnsmasq` (DNS + DHCP + TFTP for cluster), `matchbox` (PXE profiles), `tailscaled`
+- **Function:** Bootstrap server for K8s node PXE installs
+- **Switch port:** FortiSwitch (port TBD), VLAN 10 native
+- **Install:** `~/dryad-arch-iso/` on madhatter — rebuild ISO with `mkarchiso` before flashing
+
 ## OpenWork Integration
 
 ### Overview

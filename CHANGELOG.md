@@ -4,6 +4,35 @@ Append-only history of changes to the dryad-docs repository.
 
 ---
 
+## [2026-05-12] — Phase 7 Cluster Infrastructure
+
+**Type:** [INFRA] [DOCS]
+**Authors:** Nathan Modlin, Claude (Sonnet 4.6)
+**Affects:** dryad-system-reference.md
+**Status:** Canonical
+
+### Context
+
+Phase 7 brings dryad-gate (public edge) and dryad-forge (PXE bootstrap) online as dedicated cluster nodes on VLAN 10 (`10.10.10.0/24`) managed by a FortiSwitch-148F-FPOE.
+
+### Changes
+
+- Added "Cluster Infrastructure (Phase 7)" section to `dryad-system-reference.md`:
+  - Cluster network table (madhatter, dryad-sw1, dryad-forge, dryad-gate)
+  - dryad-gate node spec (IP, services, switch port)
+  - dryad-forge node spec (planned)
+  - Corrected madhatter cluster NIC: `enp2s0f1` not `enp2s0f0`
+  - FortiSwitch console access notes
+
+### Infrastructure events (not in this repo, see dryad-systems CHG-030–032)
+
+- FortiSwitch factory reset; VLAN 10 configured on port1 (madhatter) + port4 (gate)
+- Discovered madhatter cluster NIC is enp2s0f1; fixed networkd config
+- Gate connectivity restored: ping 0.5ms, caddy + cloudflared active
+- archiso GPG/mirror fix applied; forge install ready to retry
+
+---
+
 ## [2026-04-19] — Audit Gap Closure (Forensic Integrity Fix)
 
 **Type:** [FIX] [REPO_INIT]
