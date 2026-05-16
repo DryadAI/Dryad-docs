@@ -1,1 +1,5 @@
 .aider*
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.trash/
+_attachments/*.tmp
