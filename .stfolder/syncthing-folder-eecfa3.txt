@@ -1,0 +1,5 @@
+# This directory is a Syncthing folder marker.
+# Do not delete.
+
+folderID: dryad-vault
+created: 2026-05-18T17:42:50Z
