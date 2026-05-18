@@ -89,3 +89,12 @@ The prior entry remains as written. This `[FIX]` entry is the corrective record.
 - schools/memory/README.md (canonical School template).
 
 ---
+
+## CHG-031 — Dryad Vault deployed on forge
+
+- **Node:** dryad-forge / madhatter
+- **Date:** 2026-05-18
+- **What Changed:** Established /mnt/vault/dryad-vault on forge as canonical markdown knowledge substrate. Seeded from DryadAI/dryad-docs. NFS-exported read-only to 10.10.10.0/24. Mounted read-only on madhatter at /mnt/vault via fstab (soft mount). OpenCode instructions array updated to include vault schema and changelog paths.
+- **Affects:** opencode (madhatter), future Memory Keepers Guild Scribe write path, dryad-docs lifecycle
+- **Status:** Active
+- **Notes:** Vault is read-only from madhatter by design. Write path will come via mcp-vault in Phase 2. Syncthing share to precision deferred to follow-up task.

@@ -3,3 +3,16 @@
 .obsidian/workspace-mobile.json
 .trash/
 _attachments/*.tmp
+
+# Obsidian per-machine state (additional)
+.obsidian/graph.json
+.obsidian/hotkeys.json
+
+# Syncthing conflict files
+*.sync-conflict-*
+
+# Track shared Obsidian config
+!.obsidian/plugins/
+!.obsidian/community-plugins.json
+!.obsidian/core-plugins.json
+!.obsidian/app.json
